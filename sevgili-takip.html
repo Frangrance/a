@@ -66,6 +66,26 @@
       animation: pulse 1s infinite;
       margin-top: 10px;
     }
+
+    .floating-character {
+  position: fixed;
+  bottom: 60px; /* footer'ın biraz üstü */
+  width: 80px;
+  z-index: 1000;
+  animation: float 2s ease-in-out infinite alternate;
+}
+
+.floating-character img {
+  width: 100%;
+  pointer-events: none;
+}
+
+/* Hafif yukarı aşağı zıplama efekti */
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+
   </style>
 </head>
 <body>
@@ -81,6 +101,12 @@
 
     <div class="heart">❤️</div>
 
+    <div class="floating-character" style="left: 10%;"><img src="https://media.giphy.com/media/sh11BmCf8HY8F0c5GN/giphy.gif" alt="Piglet"></div>
+    <div class="floating-character" style="left: 30%;"><img src="https://media.giphy.com/media/sh11BmCf8HY8F0c5GN/giphy.gif" alt="Piglet"></div>
+    <div class="floating-character" style="left: 60%;"><img src="https://media.giphy.com/media/sh11BmCf8HY8F0c5GN/giphy.gif" alt="Piglet"></div>
+
+
+    
     <footer>
       <p>🩷 AŞIĞIM SANA 🩷</p>
     </footer>
