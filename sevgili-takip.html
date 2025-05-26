@@ -87,62 +87,51 @@
   </div>
 
   <script>
-    // Tatil dönüş tarihi
-    const returnDate = new Date("2025-06-02T00:00:00");
-    const countdownEl = document.getElementById("countdown");
-    const messageEl = document.getElementById("dailyMessage");
-    const imageEl = document.getElementById("dailyImage");
+  const targetDate = new Date("2025-06-03T00:00:00");
+  const countdownEl = document.getElementById("countdown");
+  const messageEl = document.getElementById("dailyMessage");
+  const imageEl = document.getElementById("dailyImage");
 
-    // Mesajlar ve görseller
-    const messages = [
-      {
-        text: "Bugün ilk gün... kahvemi yudumlarken seni düşündüm ☕💕",
-        image: "https://placekitten.com/400/250"
-      },
-      {
-        text: "İkinci gün… güneş senin kadar güzel değil 🌞❤️",
-        image: "https://placekitten.com/401/250"
-      },
-      {
-        text: "Üçüncü gün… rüyamda bile beraberdik 💭",
-        image: "https://placekitten.com/402/250"
-      },
-      {
-        text: "Dördüncü gün… şarkılarda hep seni arıyorum 🎶",
-        image: "https://placekitten.com/403/250"
-      },
-      {
-        text: "Beşinci gün… gözlerini özledim 🥺",
-        image: "https://placekitten.com/404/250"
-      },
-      {
-        text: "Altıncı gün… yarın seni görüyorum! 🥳",
-        image: "https://placekitten.com/405/250"
-      },
-      {
-        text: "Son gün… seni kocaman sarılmak için sabırsızlanıyorum! 🤗💘",
-        image: "https://placekitten.com/406/250"
-      }
-    ];
+  const messages = [
+    { text: "Bugün ilk gün... kahveni yudumlarken seni düşündüm ☕💕", image: "https://placekitten.com/400/250" },
+    { text: "İkinci gün… güneş senin kadar güzel değil 🌞❤️", image: "https://placekitten.com/401/250" },
+    { text: "Üçüncü gün… rüyamda bile beraberdik 💭", image: "https://placekitten.com/402/250" },
+    { text: "Dördüncü gün… şarkılarda hep seni arıyorum 🎶", image: "https://placekitten.com/403/250" },
+    { text: "Beşinci gün… gözlerini özledim 🥺", image: "https://placekitten.com/404/250" },
+    { text: "Altıncı gün… yarın seni görüyorum! 🥳", image: "https://placekitten.com/405/250" },
+    { text: "Son gün… seni kocaman sarılmak için sabırsızlanıyorum! 🤗💘", image: "https://placekitten.com/406/250" }
+  ];
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = returnDate - now;
-      const daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
-      countdownEl.textContent = `${daysLeft} gün kaldı`;
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
 
-      const index = 7 - daysLeft;
-      if (index >= 0 && index < messages.length) {
-        messageEl.textContent = messages[index].text;
-        imageEl.src = messages[index].image;
-      } else {
-        messageEl.textContent = "Bugün seni düşünmeden geçen bir gün bile olmadı...";
-        imageEl.src = "https://placekitten.com/410/250";
-      }
+    if (diff <= 0) {
+      countdownEl.textContent = "Artık buradasın! 🤗";
+      messageEl.textContent = "Seni beklemek güzeldi ama seni görmek daha güzel 💞";
+      imageEl.src = "https://placekitten.com/407/250";
+      return;
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 60000);
-  </script>
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    countdownEl.textContent = `${days}g ${hours}s ${minutes}d ${seconds}s kaldı`;
+
+    const messageIndex = 7 - days;
+    if (messageIndex >= 0 && messageIndex < messages.length) {
+      messageEl.textContent = messages[messageIndex].text;
+      imageEl.src = messages[messageIndex].image;
+    } else {
+      messageEl.textContent = "Bugün de seni düşündüm... 💌";
+      imageEl.src = "https://placekitten.com/410/250";
+    }
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000); // Her saniye güncelle
+</script>
 </body>
 </html>
