@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>🩷 Seni Beklerken 🩷</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #444;
+    }
+
+    .container {
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #c94f7c;
+      margin-top: 20px;
+    }
+
+    .countdown {
+      font-size: 2rem;
+      margin: 20px 0;
+      font-weight: bold;
+      color: #d6336c;
+    }
+
+    .message-box {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: inline-block;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .daily-image {
+      margin-top: 15px;
+      max-width: 100%;
+      border-radius: 12px;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .heart {
+      font-size: 2rem;
+      animation: pulse 1s infinite;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🩷 Seni Beklerken 🩷</h1>
+    <div class="countdown" id="countdown"></div>
+
+    <div class="message-box">
+      <h2>Bugünün Mesajı</h2>
+      <p id="dailyMessage">Yükleniyor...</p>
+      <img id="dailyImage" src="" alt="" class="daily-image"/>
+    </div>
+
+    <div class="heart">❤️</div>
+
+    <footer>
+      <p>Her gün seni düşünerek yazıldı... 💌</p>
+    </footer>
+  </div>
+
+  <script>
+    // Tatil dönüş tarihi
+    const returnDate = new Date("2025-06-02T00:00:00");
+    const countdownEl = document.getElementById("countdown");
+    const messageEl = document.getElementById("dailyMessage");
+    const imageEl = document.getElementById("dailyImage");
+
+    // Mesajlar ve görseller
+    const messages = [
+      {
+        text: "Bugün ilk gün... kahvemi yudumlarken seni düşündüm ☕💕",
+        image: "https://placekitten.com/400/250"
+      },
+      {
+        text: "İkinci gün… güneş senin kadar güzel değil 🌞❤️",
+        image: "https://placekitten.com/401/250"
+      },
+      {
+        text: "Üçüncü gün… rüyamda bile beraberdik 💭",
+        image: "https://placekitten.com/402/250"
+      },
+      {
+        text: "Dördüncü gün… şarkılarda hep seni arıyorum 🎶",
+        image: "https://placekitten.com/403/250"
+      },
+      {
+        text: "Beşinci gün… gözlerini özledim 🥺",
+        image: "https://placekitten.com/404/250"
+      },
+      {
+        text: "Altıncı gün… yarın seni görüyorum! 🥳",
+        image: "https://placekitten.com/405/250"
+      },
+      {
+        text: "Son gün… seni kocaman sarılmak için sabırsızlanıyorum! 🤗💘",
+        image: "https://placekitten.com/406/250"
+      }
+    ];
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = returnDate - now;
+      const daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
+      countdownEl.textContent = `${daysLeft} gün kaldı`;
+
+      const index = 7 - daysLeft;
+      if (index >= 0 && index < messages.length) {
+        messageEl.textContent = messages[index].text;
+        imageEl.src = messages[index].image;
+      } else {
+        messageEl.textContent = "Bugün seni düşünmeden geçen bir gün bile olmadı...";
+        imageEl.src = "https://placekitten.com/410/250";
+      }
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+  </script>
+</body>
+</html>
