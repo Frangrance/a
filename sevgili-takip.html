@@ -5,6 +5,36 @@
   <title>❤️ Seni Beklerken ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    #heart-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.heart-float {
+  position: absolute;
+  bottom: 0;
+  font-size: 20px;
+  color: #ff3366;
+  animation: floatUp 4s linear forwards;
+  opacity: 0.8;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.5);
+    opacity: 0;
+  }
+}
     body {
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
@@ -86,6 +116,7 @@
 }
 
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <div class="container">
@@ -105,7 +136,7 @@
     <div class="floating-character" style="left: 60%;"><img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2hlbWtnZzQzZW11ajg5eXZsOGswYWFwNWoyNWhxMWJsc2N0bnlqdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9d3LQ6TdV2Flo8ODTU/giphy.gif"></div>
     </div>
 
-    
+    <div id="heart-container"></div>
     <footer>
       <p>🩷 AŞIĞIM SANA 🩷</p>
     </footer>
@@ -159,6 +190,29 @@
 
   updateCountdown();
   setInterval(updateCountdown, 1000); // Her saniye güncelle
+
+     function createHeart() {
+    const heart = document.createElement("i");
+    heart.className = "fa-solid fa-heart heart-float";
+
+    // Rastgele yatay pozisyon (0% - 100%)
+    heart.style.left = Math.random() * 100 + "vw";
+
+    // Rastgele boyut
+    const size = Math.random() * 10 + 15; // 15px - 25px
+    heart.style.fontSize = size + "px";
+
+    // Kalbi ekle
+    document.getElementById("heart-container").appendChild(heart);
+
+    // 4 saniye sonra sil
+    setTimeout(() => {
+      heart.remove();
+    }, 4000);
+  }
+
+  // Sürekli kalp üret
+  setInterval(createHeart, 500); // Her 0.5 saniyede bir
 </script>
 </body>
 </html>
