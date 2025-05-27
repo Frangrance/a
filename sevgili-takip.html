@@ -94,7 +94,6 @@
     .heart {
       font-size: 2rem;
       animation: pulse 1s infinite;
-      margin-top: 10px;
     }
 
     .floating-character {
@@ -120,7 +119,13 @@
 </head>
 <body>
   <div class="container">
-    <h1><div class="heart">❤️</div> Seni Beklerken <div class="heart">❤️</div></h1>
+    <h1 style="
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;><div class="heart">❤️</div> Seni Beklerken <div class="heart">❤️</div></h1>
     <div class="countdown" id="countdown"></div>
 
     <div class="message-box">
